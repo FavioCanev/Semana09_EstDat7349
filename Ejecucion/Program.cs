@@ -22,6 +22,7 @@ namespace Ejecucion
             abb.maquillar(13);
             abb.maquillar(26);
             abb.maquillar(72);
+            abb.maquillar(8);
 
             //abb.inOrden(abb.raizMain);
             abb.dibujito();
