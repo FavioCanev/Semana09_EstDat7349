@@ -12,21 +12,25 @@ namespace Ejecucion
         static void Main(string[] args)
         {
             Arbol abb = new Arbol();
-            abb.maquillar(15);
-            abb.maquillar(9);
-            abb.maquillar(20);
-            abb.maquillar(6);
-            abb.maquillar(14);
-            abb.maquillar(17);
-            abb.maquillar(64);
-            abb.maquillar(13);
-            abb.maquillar(26);
-            abb.maquillar(72);
-            abb.maquillar(8);
+            abb.insertarEncapsulado(15);
+            abb.insertarEncapsulado(9);
+            abb.insertarEncapsulado(20);
+            abb.insertarEncapsulado(6);
+            abb.insertarEncapsulado(14);
+            abb.insertarEncapsulado(17);
+            abb.insertarEncapsulado(64);
+            abb.insertarEncapsulado(13);
+            abb.insertarEncapsulado(26);
+            abb.insertarEncapsulado(72);
+            abb.insertarEncapsulado(8);
 
-            //abb.inOrden(abb.raizMain);
             abb.dibujito();
-            Console.ReadKey();
+
+            Console.Write("Qué nodo quieres eliminar?: ");
+            int nodito = int.Parse(Console.ReadLine());
+
+            abb.eliminarEncapsulado(nodito);
+            abb.dibujito();
         }
     }
 }

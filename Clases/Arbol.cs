@@ -11,7 +11,7 @@ namespace Clases
     {
         public Nodo raizMain = null;
         
-        public void maquillar(int datito)
+        public void insertarEncapsulado(int datito)
         {
             insertar(ref raizMain, datito);
         }
@@ -87,6 +87,77 @@ namespace Clases
         public void dibujito()
         {
             dibujarArbol(raizMain, 0);
+        }
+
+
+        public void eliminarEncapsulado(int buscado)
+        {
+            eliminar(ref raizMain, buscado);
+        }
+
+        private Nodo buscarMayor(Nodo raiz)
+        {
+            if (raiz.der == null)
+            {
+                return raiz;
+            }
+            else
+            {
+                return buscarMayor(raiz.der);
+            }
+        }
+
+        private Nodo buscarMenor(Nodo raiz)
+        {
+            if (raiz.izq == null)
+            {
+                return raiz;
+            }
+            else
+            {
+                return buscarMenor(raiz.izq);
+            }
+        }
+        private void eliminar(ref Nodo raicita, int buscado)
+        {
+            if (raicita == null)
+            {
+                Console.WriteLine("El dato no existe en el árbol");
+            }
+            else
+            {
+                if (buscado < raicita.dato) //izquierda
+                {
+                    eliminar(ref raicita.izq, buscado);
+                }
+                else if (buscado > raicita.dato) //derecha
+                {
+                    eliminar(ref raicita.der, buscado);
+                }
+                else //igual, encontré, eliminarlo
+                {
+                    if (raicita.izq == null && raicita.der == null)//verificamos si es una hoja
+                    {
+                        raicita = null;
+                    }
+                    else if (raicita.izq != null && raicita.der == null)// tiene un hijo a la izquierda
+                    {
+                        Nodo mayor = buscarMayor(raicita.izq);
+                        int aux = raicita.dato;
+                        raicita.dato = mayor.dato;
+                        mayor.dato = aux;
+                        eliminar(ref raicita.izq, buscado);
+                    }
+                    else //tiene un hijo a la derecha
+                    {
+                        Nodo mayor = buscarMenor(raicita.der);
+                        int aux = raicita.dato;
+                        raicita.dato = mayor.dato;
+                        mayor.dato = aux;
+                        eliminar(ref raicita.der, buscado);
+                    }
+                }
+            }
         }
     }
 }
